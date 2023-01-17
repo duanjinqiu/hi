@@ -1,5 +1,16 @@
-console.log(`提交文件`);
+const Koa = require("koa");
+const app = new Koa();
+const KoaRouter = require("koa-router");
+const router = new KoaRouter();
+const koaStatic = require("koa-static");
 
-console.log(`哈哈`);
+app.use(koaStatic("./static"));
+router.get("/giao", async (ctx) => {
+  ctx.body = "giao";
+});
 
-为什么
+app.use(router.routes());
+
+app.listen(3001, () => {
+  console.log(`监听端口3001中……`);
+});
